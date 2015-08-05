@@ -6,3 +6,25 @@
 		font-weight: bold;
 	}
 }
+
+.navbar {
+	.container-fluid {
+		background-color: #b80b03;
+		.navbar-nav > li > a {
+			color: #ffffff;
+			font-size: 16px;
+			font-weight: bold;
+		}
+		.navbar-brand {
+			color: black;
+			font-size: 30px;
+			font-weight: bold;
+			font-family: 'Hobo Std';
+			text-shadow: 2px 0 0 #fff, -2px 0 0 #fff, 0 2px 0 #fff, 0 -2px 0 #fff, 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+		}
+	}
+}
+
+.container-fluid {
+	padding: 6px 120px;
+}
