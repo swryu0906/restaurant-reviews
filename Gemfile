@@ -47,3 +47,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
 ruby "2.1.5"
+
+# File uploader
+gem 'carrierwave', '~> 0.10.0'
