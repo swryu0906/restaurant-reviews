@@ -50,3 +50,9 @@ ruby "2.1.5"
 
 # File uploader
 gem 'carrierwave', '~> 0.10.0'
+
+# Amazon S3 support
+# gem 'fog-aws', '~> 0.7.4'
+# gem 'carrierwave-aws', '~> 0.7.1'
+gem 'fog', '~> 1.32.0'
+gem 'figaro', '~> 1.1.1'
