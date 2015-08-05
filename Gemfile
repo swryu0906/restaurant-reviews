@@ -56,3 +56,6 @@ gem 'carrierwave', '~> 0.10.0'
 # gem 'carrierwave-aws', '~> 0.7.1'
 gem 'fog', '~> 1.32.0'
 gem 'figaro', '~> 1.1.1'
+
+# Image modification
+gem 'mini_magick', '~> 4.2.9'
