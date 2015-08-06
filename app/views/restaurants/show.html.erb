@@ -27,6 +27,7 @@
 			<h3>No reviews yet. Be the first to write one!</h3>
 		<% else %>
 			<% @reviews.order(:created_at).each do |review| %>
+				<div class="star-rating" data-score="<%= review.rating %>"></div>
 				<p><%= review.rating %></p>
 				<p><%= review.comment %></p>
 				<hr>
@@ -42,3 +43,14 @@
 
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn btn-link' %> |
 <%= link_to 'Back', restaurants_path, class: 'btn btn-link' %>
+
+
+<script>
+	$('.star-rating').raty({
+		path: 'https://s3.amazonaws.com/restaurant-reviews-0906/stars',
+		score: function() {
+		    return $(this).attr('data-score');
+		},
+		readOnly: true
+	});
+</script>
