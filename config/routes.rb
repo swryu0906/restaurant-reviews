@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   get 'pages/about'
   get 'pages/contact'
 
+  resources :restaurants do
+    resources :reviews, except: [:show, :index]
+  end
   devise_for :users
-  resources :restaurants
-  resources :reviews, except: [:show, :index]
-
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
