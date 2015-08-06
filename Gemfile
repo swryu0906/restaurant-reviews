@@ -59,3 +59,6 @@ gem 'figaro', '~> 1.1.1'
 
 # Image modification
 gem 'mini_magick', '~> 4.2.9'
+
+# User authentication
+gem 'devise', '~> 3.5.1'
