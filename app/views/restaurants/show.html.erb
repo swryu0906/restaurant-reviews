@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-4">
+	<div class="col-sm-3">
 		<%= image_tag @restaurant.image_url %>
 
 		<h2>
@@ -31,14 +31,26 @@
 		</p>
 	</div>
 
-	<div class="col-sm-8">
+	<div class="col-sm-9">
 		<% if @reviews.blank? %>
 			<h3>No reviews yet. Be the first to write one!</h3>
 		<% else %>
 			<table class="table">
+				<thead>
+					<tr>
+						<td class="col-sm-3"></td>
+						<td class="col-sm-9"></td>
+					</tr>
+				</thead>
 				<tbody>
 					<% @reviews.order(:created_at).each do |review| %>
 						<tr>
+							<td>
+								<h4><%= "#{review.user.first_name.capitalize} #{review.user.last_name.capitalize[0]}." %></h4>
+								<p><%= review.created_at.strftime("%-m/%-d/%y") %>
+									
+								</p>				
+							</td>
 							<td>
 								<div class="star-rating" data-score= <%= review.rating %> ></div>
 								<p><%= review.rating %></p>
