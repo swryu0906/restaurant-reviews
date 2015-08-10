@@ -10,9 +10,15 @@
 <body>
 	<%= render 'layouts/navbar' %>
 	<div class="container">
-		<%= render 'layouts/flash_messages' %>
-		<%= yield %>
-		<%= render 'layouts/footer' %>
+		<div class="content-container">
+			<div class="flash-container">
+				<%= render 'layouts/flash_messages' %>
+			</div>
+			<%= yield %>
+		</div>
+		<div class="footer-container">
+			<%= render 'layouts/footer' %>
+		</div>
 	</div>
 	<%= render 'layouts/script' %>
 </body>

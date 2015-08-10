@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="col-sm-3">
+	<div class="col-sm-4">
 		<%= image_tag @restaurant.image_url, class: 'img-responsive img-thumbnail center-block', alt: 'Restaurant-image' %>
 
 		<h2>
@@ -32,7 +32,7 @@
 
 	</div>
 
-	<div class="col-sm-9">
+	<div class="col-sm-8">
 		<% if @reviews.blank? %>
 			<h3>No reviews yet. Be the first to write one!</h3>
 		<% else %>
