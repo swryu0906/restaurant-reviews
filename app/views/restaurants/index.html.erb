@@ -9,26 +9,31 @@
 <table class="table table-hover table-condensed">
   <thead>
     <tr>
-      <th>Name</th>
-      <th>Address</th>
-      <th>Phone</th>
-      <th>Website</th>
-      <th>Image</th>
-      <th colspan="3"></th>
+      <th class="text-center">Image</th>
+      <th class="text-center">Name</th>
+      <th class="text-center">Address</th>
+      <th class="text-center">Phone</th>
+      <th class="text-center">Website</th>
+      <% if user_signed_in? && current_user.admin? %>
+        <th colspan="2"></th>
+      <% end %>
     </tr>
   </thead>
 
   <tbody>
     <% @restaurants.each do |restaurant| %>
       <tr>
-        <td><%= restaurant.name %></td>
+        <td><%= link_to restaurant do %><%= image_tag restaurant.image_url(:thumb), class: 'img-responsive img-thumbnail center-block', alt: 'Restaurant image' %><% end %></td>
+        <td><%= link_to restaurant.name, restaurant %></td>
         <td><%= restaurant.address %></td>
         <td><%= restaurant.phone %></td>
-        <td><%= link_to restaurant.website, restaurant.website, target: '_blank' %></td>
-        <td><%= restaurant.image %></td>
-        <td><%= link_to 'Show', restaurant, class: 'btn btn-link btn-xs' %></td>
-        <td><%= link_to 'Edit', edit_restaurant_path(restaurant), class: 'btn btn-link btn-xs' %></td>
-        <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' %></td>
+        <td><%= link_to truncate(restaurant.website, length: 30), restaurant.website, target: '_blank' %></td>
+  
+
+        <% if user_signed_in? && current_user.admin? %>
+          <td><%= link_to 'Edit', edit_restaurant_path(restaurant), class: 'btn btn-link btn-xs' %></td>
+          <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-link btn-xs' %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -36,6 +41,8 @@
 
 <br>
 
-<%= link_to 'New Restaurant', new_restaurant_path, class: 'btn btn-link' %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to "New Restaurant", new_restaurant_path, class: 'btn btn-link' %>
+<% end %>
 
 <%= image_tag 'https://s3.amazonaws.com/restaurant-reviews-0906/restaurant-reviews/happy_footer.png' %>

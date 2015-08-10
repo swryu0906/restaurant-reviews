@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-sm-3">
-		<%= image_tag @restaurant.image_url %>
+		<%= image_tag @restaurant.image_url, class: 'img-responsive img-thumbnail center-block', alt: 'Restaurant-image' %>
 
 		<h2>
 		  <%= @restaurant.name %>
@@ -44,18 +44,21 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% @reviews.order(:created_at).each do |review| %>
+					<% @reviews.each do |review| %>
 						<tr>
 							<td>
 								<h4><%= "#{review.user.first_name.capitalize} #{review.user.last_name.capitalize[0]}." %></h4>
-								<p><%= review.created_at.strftime("%-m/%-d/%Y") %>
-									
-								</p>				
+								<p><%= review.created_at.strftime("%-m/%-d/%Y") %></p>	
 							</td>
 							<td>
 								<div class="star-rating" data-score= <%= review.rating %> ></div>
 								<p><%= review.rating %></p>
 								<p><%= h(review.comment).gsub(/\n/, '<br/>').html_safe %></p>
+								<% if user_signed_in? %>
+									<p><% if ((review.user_id == current_user.id) || (current_user.admin?)) %>
+										<%= link_to 'Edit', edit_restaurant_review_path(@restaurant, review), class: 'btn btn-link' %> <%= link_to 'Delete', restaurant_review_path(@restaurant, review), method: :delete, class: 'btn btn-link' %></p>
+									<% end %> 
+								<% end %>
 							</td>
 						</tr>
 					<% end %>			
@@ -65,5 +68,7 @@
 	</div>
 </div>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn btn-link' %> |
+<% if user_signed_in? && current_user.admin? %>
+	<%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn btn-link' %> |
+<% end %>
 <%= link_to 'Back', restaurants_path, class: 'btn btn-link' %>
