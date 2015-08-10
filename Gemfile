@@ -62,3 +62,6 @@ gem 'mini_magick', '~> 4.2.9'
 
 # User authentication
 gem 'devise', '~> 3.5.1'
+
+# Search feature
+gem 'searchkick', '~> 0.9.0'
