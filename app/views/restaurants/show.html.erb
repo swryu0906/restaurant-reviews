@@ -9,11 +9,9 @@
 		<div class="star-rating" data-score= <%= @avg_rating %> ></div>
 		<p>
 			<strong>Average rating:</strong>
-			<%= @avg_rating %>
+			<%= @avg_rating %><br>
+			<%= pluralize(@reviews.count, "review") %>
 		</p>
-		<p><%= @reviews.length %> reviews</p>
-
-
 
 		<p>
 		  <strong>Address:</strong>
@@ -29,6 +27,9 @@
 		  <strong>Website:</strong>
 		  <%= link_to @restaurant.website, @restaurant.website, target: '_blank' %>
 		</p>
+		
+		<%= link_to 'Write a review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary' %>
+
 	</div>
 
 	<div class="col-sm-9">
@@ -47,7 +48,7 @@
 						<tr>
 							<td>
 								<h4><%= "#{review.user.first_name.capitalize} #{review.user.last_name.capitalize[0]}." %></h4>
-								<p><%= review.created_at.strftime("%-m/%-d/%y") %>
+								<p><%= review.created_at.strftime("%-m/%-d/%Y") %>
 									
 								</p>				
 							</td>
@@ -64,21 +65,5 @@
 	</div>
 </div>
 
-
-
-<%= link_to 'Write a review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary' %>
-
-
 <%= link_to 'Edit', edit_restaurant_path(@restaurant), class: 'btn btn-link' %> |
 <%= link_to 'Back', restaurants_path, class: 'btn btn-link' %>
-
-
-<script>
-	$('.star-rating').raty({
-		path: 'https://s3.amazonaws.com/restaurant-reviews-0906/stars',
-		score: function() {
-		    return $(this).attr('data-score');
-		},
-		readOnly: true
-	});
-</script>
